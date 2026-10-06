@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Gestión</title>
+    <!-- Enlace a tu archivo CSS existente -->
+    <link rel="stylesheet" href="../css/formulario.css">
+</head>
+<body>
+
+    <div class="contenedor">
+  
+        <h2 class="titulo">Formulario de Registro</h2>
+        <form class="formulario-elegante" id="miFormulario">
+            <div class="form-grupo">
+                <label for="nombre">Nombre completo</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Ingresa tu nombre">
+            </div>
+
+            <div class="form-grupo">
+                <label for="ciudad">Ciudad</label>
+                <select id="ciudad" name="ciudad">
+                    <option value="">Selecciona una opción</option>
+                    <option value="lima">Lima</option>
+                    <option value="chincha">Chincha</option>
+                    <option value="ica">Ica</option>
+                </select>
+            </div>
+
+            <div class="form-grupo">
+                <button type="submit">Enviar datos</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Script para gestionar la navegación y realce del control activo al presionar Enter
+        const formulario = document.getElementById('miFormulario');
+        const elementos = Array.from(formulario.querySelectorAll('input, select, button'));
+
+        elementos.forEach((elemento, indice) => {
+            elemento.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    
+                    elementos.forEach(el => el.classList.remove('control-activo'));
+                    
+                    const siguienteIndice = (indice + 1) % elementos.length;
+                    elementos[siguienteIndice].focus();
+                    elementos[siguienteIndice].classList.add('control-activo');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
